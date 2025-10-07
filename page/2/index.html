@@ -50,26 +50,6 @@
         z-index: 99;
         background-color: #f5f5fa;
     }
-    .animated-stop {
-        animation-play-state: paused !important;
-    }
-
-    .scaleAndFadeout {
-        animation: scaleAndFadeOut 1.5s forwards;
-    }
-
-     
-    @keyframes scaleAndFadeOut {
-        0% {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        100% {
-            transform: scale(1.5);
-            opacity: 0;
-        }
-    }
 
      
     .wheel-and-hamster {
@@ -347,24 +327,14 @@
 
     function initLoading() {
         let loading = document.querySelector(".loading");
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             
-            loadFinish();
-            
-            setTimeout(() => {
-                loading.style.display = "none";
-            }, 1500)
-        })
+            setTimeout(function()=> {
+                loading.style.display ="none";
+            },1500)
+        });
     }
-        
-    function loadFinish() {
-        
-        let sharingon = document.querySelector(".sharingon");
-        sharingon.classList.add("animated-stop")
-        
-        let loading = document.querySelector(".loading");
-        loading.classList.add("scaleAndFadeout")
-    }
+
     initLoading();
 </script>
 
