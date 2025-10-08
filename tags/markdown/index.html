@@ -10,7 +10,7 @@
 <meta property='og:description' content="给时光以岁月，而不是给岁月以时光。">
 <meta property='og:url' content='https://steven486-art.github.io/hugo-steven.io/tags/markdown/'>
 <meta property='og:site_name' content='佚名'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2025-10-05T15:59:09&#43;08:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2025-10-08T16:41:14&#43;08:00 '/>
 <meta name="twitter:title" content="Tag: Markdown - 佚名">
 <meta name="twitter:description" content="给时光以岁月，而不是给岁月以时光。"><link rel="alternate" type="application/rss&#43;xml" href="https://steven486-art.github.io/hugo-steven.io/tags/markdown/index.xml">
     <link rel="shortcut icon" href="/hugo-steven.io/favicon.ico" />
@@ -857,6 +857,73 @@
         document.head.appendChild(customFont);
     }());
 </script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<div id="aplayer"></div>
+<script>
+    const musicDir = "https://steven486-art.github.io/hugo-steven.io/" + 'music/';
+    const songs = [
+        '三叶-radwimps',
+        '偏向-陈子晴',
+        '指纹-杜宣达',
+        'refor-radwimps',
+        'memory-thruth',
+        'jur-daily',
+        'maybe-hh',
+    ];
+    let audios = [];
+    songs.forEach((item) => {
+        const songInfo = item.split('-');
+        audios.push({
+            name: songInfo[0],
+            artist: songInfo[1],
+            url: musicDir + item + '/song.mp3',
+            cover: musicDir + item + '/cover.jpg',
+
+        });
+    })
+    const ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    audio: audios
+});
+    
+
+    window.onbeforeunload = () => {
+        
+        const playInfo = {
+            index: ap.list.index,
+            currentTime: ap.audio.currentTime,
+            paused: ap.paused
+        };
+        localStorage.setItem("playInfo", JSON.stringify(playInfo));
+    };
+
+    
+
+    window.onload = () => {
+        
+        const playInfo = JSON.parse(localStorage.getItem("playInfo"));
+        if (!playInfo) {
+            return;
+        }
+        
+        ap.list.switch(playInfo.index);
+        
+        setTimeout(() => {
+            
+            ap.seek(playInfo.currentTime);
+            
+            if (!playInfo.paused) {
+                ap.play()
+            }
+        }, 500);
+    };
+
+</script>
+
 <style>
     body {
         background: url(https://steven486-art.github.io/hugo-steven.io/background/111.png) no-repeat center top;
@@ -876,5 +943,43 @@
         --code-font-family: 'fangsong';
     }
 </style>
+
+...
+<script>
+    ...
+    
+
+    window.onbeforeunload = () => {
+        
+        const playInfo = {
+            index: ap.list.index,
+            currentTime: ap.audio.currentTime,
+            paused: ap.paused
+        };
+        localStorage.setItem("playInfo", JSON.stringify(playInfo));
+    };
+
+    
+
+    window.onload = () => {
+        
+        const playInfo = JSON.parse(localStorage.getItem("playInfo"));
+        if (!playInfo) {
+            return;
+        }
+        
+        ap.list.switch(playInfo.index);
+        
+        setTimeout(() => {
+            
+            ap.seek(playInfo.currentTime);
+            
+            if (!playInfo.paused) {
+                ap.play()
+            }
+        }, 500);
+    };
+</script>
+
     </body>
 </html>
