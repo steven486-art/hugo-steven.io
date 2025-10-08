@@ -977,42 +977,24 @@
     }
 </style>
 
-...
+<div id="particles-js"></div>
+
+<script src=https://steven486-art.github.io/hugo-steven.io/background/particles.min.js></script>
 <script>
-    ...
-    
-
-    window.onbeforeunload = () => {
-        
-        const playInfo = {
-            index: ap.list.index,
-            currentTime: ap.audio.currentTime,
-            paused: ap.paused
-        };
-        localStorage.setItem("playInfo", JSON.stringify(playInfo));
-    };
-
-    
-
-    window.onload = () => {
-        
-        const playInfo = JSON.parse(localStorage.getItem("playInfo"));
-        if (!playInfo) {
-            return;
-        }
-        
-        ap.list.switch(playInfo.index);
-        
-        setTimeout(() => {
-            
-            ap.seek(playInfo.currentTime);
-            
-            if (!playInfo.paused) {
-                ap.play()
-            }
-        }, 500);
-    };
+  particlesJS.load('particles-js', "https://steven486-art.github.io/hugo-steven.io/background/particlesjs-config.json", function() {
+    console.log('particles.js loaded - callback');
+  });
 </script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
 
     </body>
 </html>
