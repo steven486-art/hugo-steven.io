@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://steven486-art.github.io/hugo-steven.io/tags/html/'>
 
-<link rel="stylesheet" href="/hugo-steven.io/scss/style.min.89ee2d824c3836a067081ea27bef9c6d35c5c56988c03f1dc3ed4c96a17bed5a.css"><meta property='og:title' content="Tag: Html - 佚名">
+<link rel="stylesheet" href="/hugo-steven.io/scss/style.min.26c8bb455a5ff36d4e04bb9ee70d44e026e09fba54908090324685f240552e45.css"><meta property='og:title' content="Tag: Html - 佚名">
 <meta property='og:description' content="给时光以岁月，而不是给岁月以时光。">
 <meta property='og:url' content='https://steven486-art.github.io/hugo-steven.io/tags/html/'>
 <meta property='og:site_name' content='佚名'>
@@ -825,7 +825,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/hugo-steven.io/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/hugo-steven.io/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -904,6 +904,69 @@
 
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+
+<script>
+    var pjax = new Pjax({
+        selectors: [
+            ".main-container", ".js-Pjax"
+        ]
+    })
+
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            
+            pjax._handleResponse(responseText, request, href, options);
+        } else {
+            
+        }
+    }
+    
+    document.addEventListener('pjax:complete', () => {
+        
+        window.Stack.init();
+    })
+
+
+</script><div class="js-Pjax">
+<script>
+    (function () {
+        
+        let comment = document.querySelector(".comment");
+        if (!comment) {
+            return
+        }
+        let script = document.createElement('script');
+        
+        script.setAttribute('src', 'https://giscus.app/client.js');
+        script.setAttribute('data-repo', 'steven486-art\/hugo-steven.io');
+        script.setAttribute('data-repo-id',"R_kgDONsUXaQ")
+        script.setAttribute('data-category',"Announcements")
+        script.setAttribute('data-category-id',"DIC_kwDONsUXac4CwYni")
+        script.setAttribute('data-mapping',"pathname")
+        script.setAttribute('data-strict',"0")
+        script.setAttribute('data-reactions-enabled',"1")
+        script.setAttribute('data-emit-metadata',"0")
+        script.setAttribute('data-input-position',"top")
+        script.setAttribute('data-theme',"dark_high_contrast")
+        script.setAttribute('data-lang',"zh-CN")
+        script.setAttribute('data-loading',"")
+        script.crossOrigin = 'anonymous'
+        
+        script.async = true;
+        
+        document.querySelector('.site-footer').before(script)
+    })(document);
+</script>
+<div>
 <style>
     body {
         background: url(https://steven486-art.github.io/hugo-steven.io/background/111.png) no-repeat center top;
@@ -942,6 +1005,12 @@
     z-index: -1;
   }
 </style>
+<script>
+    document.addEventListener('pjax:complete', () => {
+        
+        window.Stack.init();
+    })
+</script>
 
     </body>
 </html>
